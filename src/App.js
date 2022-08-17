@@ -9,6 +9,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [searchValue, setSearchValue] = React.useState('');
   const [invites, setInvites] = React.useState([]);
+  const [success, setSuccess] = React.useState(false);
 
   React.useEffect(() => {
     fetch('https://reqres.in/api/users')
@@ -36,16 +37,21 @@ function App() {
   }
 
   return (<div className="App">
-      <Users
-        items={users}
-        isLoading={isLoading}
-        onChangeValue={onChangeValue}
-        searchValue={searchValue}
-        onClickInvite={onClickInvite}
-        invites={invites}
-      />
-      {/* <Success /> */}
-    </div>);
+    {
+      success
+        ? <Success count={invites.length}/>
+        : <Users
+          items={users}
+          isLoading={isLoading}
+          onChangeValue={onChangeValue}
+          searchValue={searchValue}
+          onClickInvite={onClickInvite}
+          invites={invites}
+          setSuccess={setSuccess}
+        />
+    }
+
+  </div>);
 }
 
 export default App;
