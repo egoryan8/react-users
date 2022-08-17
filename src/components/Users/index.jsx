@@ -19,7 +19,9 @@ export const Users = ({ items, isLoading }) => {
         </div>
       ) : (
         <ul className="users-list">
-          <User />
+          {
+            items.map(obj => <User {...obj}/>)
+          }
         </ul>
       )}
       <button className="send-invite-btn">Отправить приглашение</button>
