@@ -23,7 +23,7 @@ export const Users = ({items, isLoading, onChangeValue, searchValue, onClickInvi
           {
             items
               .filter(obj => {
-                const fullName = (obj.first_name + obj.last_name).toLowerCase();
+                const fullName = (obj.first_name + ' ' + obj.last_name).toLowerCase();
                 return fullName.includes(searchValue.toLowerCase()) || obj.email.includes(searchValue.toLowerCase());
               })
               .map(obj => <User key={obj.id} {...obj} onClickInvite={onClickInvite} isInvited={invites.includes(obj.id)}/>)
